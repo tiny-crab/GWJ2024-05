@@ -1,0 +1,128 @@
+[gd_scene load_steps=4 format=3 uid="uid://d4exuhg7n32t7"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_xsy64"]
+[ext_resource type="Texture2D" uid="uid://ddavcxrop87me" path="res://assets/turn_indicator.png" id="2_mpdl6"]
+[ext_resource type="Texture2D" uid="uid://c88t6h65amc8y" path="res://assets/rage_indicator.png" id="3_khd12"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_xsy64")
+
+[node name="Player" type="HBoxContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 46.0
+offset_top = 45.0
+offset_right = 350.0
+offset_bottom = 181.0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Bars" type="VBoxContainer" parent="Player"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="Player/Bars"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[node name="RageBar" type="ProgressBar" parent="Player/Bars"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[node name="Actions" type="VBoxContainer" parent="Player"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Attack" type="Button" parent="Player/Actions"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Attack"
+
+[node name="Special" type="Button" parent="Player/Actions"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Special"
+
+[node name="DebugJump" type="Button" parent="Player/Actions"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Jump"
+
+[node name="DebugDodge" type="Button" parent="Player/Actions"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Dodge"
+
+[node name="Indicators" type="VBoxContainer" parent="Player"]
+layout_mode = 2
+
+[node name="TurnIndicator" type="TextureRect" parent="Player/Indicators"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_mpdl6")
+
+[node name="RageIndicator" type="TextureRect" parent="Player/Indicators"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_khd12")
+
+[node name="Enemy" type="HBoxContainer" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = 36.0
+offset_right = -25.0
+offset_bottom = 102.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Indicators" type="VBoxContainer" parent="Enemy"]
+layout_mode = 2
+
+[node name="TurnIndicator" type="TextureRect" parent="Enemy/Indicators"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_mpdl6")
+
+[node name="RageIndicator" type="TextureRect" parent="Enemy/Indicators"]
+visible = false
+layout_mode = 2
+texture = ExtResource("3_khd12")
+
+[node name="DebugActions" type="VBoxContainer" parent="Enemy"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="Attack" type="Button" parent="Enemy/DebugActions"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Attack"
+
+[node name="Special" type="Button" parent="Enemy/DebugActions"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+text = "Special"
+
+[node name="Bars" type="VBoxContainer" parent="Enemy"]
+layout_mode = 2
+metadata/_edit_group_ = true
+
+[node name="HealthBar" type="ProgressBar" parent="Enemy/Bars"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[node name="RageBar" type="ProgressBar" parent="Enemy/Bars"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+
+[connection signal="pressed" from="Player/Actions/Attack" to="." method="_on_player_attack_pressed"]
+[connection signal="pressed" from="Player/Actions/Special" to="." method="_on_player_special_pressed"]
+[connection signal="pressed" from="Player/Actions/DebugJump" to="." method="_on_player_debug_jump_pressed"]
+[connection signal="pressed" from="Player/Actions/DebugDodge" to="." method="_on_player_debug_dodge_pressed"]
+[connection signal="pressed" from="Enemy/DebugActions/Attack" to="." method="_on_enemy_attack_pressed"]
+[connection signal="pressed" from="Enemy/DebugActions/Special" to="." method="_on_enemy_special_pressed"]

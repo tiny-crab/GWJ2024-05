@@ -1,152 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxt1pif8eymj"]
+[gd_scene load_steps=5 format=3 uid="uid://dxt1pif8eymj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_tkvc6"]
-[ext_resource type="Texture2D" uid="uid://dg1m02ii031ro" path="res://assets/player_raw_sheet.png" id="1_u0n11"]
-[ext_resource type="Script" path="res://player.gd" id="2_cliqb"]
-[ext_resource type="Texture2D" uid="uid://c2iq5kosjgokg" path="res://assets/enemy_raw_sheet.png" id="2_qbled"]
-[ext_resource type="Script" path="res://enemy.gd" id="4_f3548"]
-[ext_resource type="Texture2D" uid="uid://ddavcxrop87me" path="res://assets/turn_indicator.png" id="6_x4gkv"]
-[ext_resource type="Texture2D" uid="uid://c88t6h65amc8y" path="res://assets/rage_indicator.png" id="7_7b87t"]
+[ext_resource type="PackedScene" uid="uid://2qpr8hodrbsi" path="res://player.tscn" id="2_kustv"]
+[ext_resource type="PackedScene" uid="uid://dokqrpxf6tpte" path="res://enemy.tscn" id="3_d8jnq"]
+[ext_resource type="PackedScene" uid="uid://d4exuhg7n32t7" path="res://ui.tscn" id="4_38e1t"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_tkvc6")
 
-[node name="Player" type="Node2D" parent="."]
-script = ExtResource("2_cliqb")
+[node name="Player" parent="." instance=ExtResource("2_kustv")]
+position = Vector2(194, 314)
 
-[node name="Sprite" type="Sprite2D" parent="Player"]
-position = Vector2(270, 300)
-scale = Vector2(3, 3)
-texture = ExtResource("1_u0n11")
-region_enabled = true
-region_rect = Rect2(14, 7, 19, 29)
+[node name="Enemy" parent="." instance=ExtResource("3_d8jnq")]
+position = Vector2(965, 278)
 
-[node name="Enemy" type="Node2D" parent="."]
-script = ExtResource("4_f3548")
+[node name="UI" parent="." instance=ExtResource("4_38e1t")]
 
-[node name="Sprite" type="Sprite2D" parent="Enemy"]
-position = Vector2(928, 259)
-scale = Vector2(4, 4)
-texture = ExtResource("2_qbled")
-region_enabled = true
-region_rect = Rect2(73, 202, 73, 36)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Player" type="HBoxContainer" parent="UI"]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 46.0
-offset_top = 45.0
-offset_right = 350.0
-offset_bottom = 181.0
-grow_vertical = 2
-metadata/_edit_group_ = true
-
-[node name="Bars" type="VBoxContainer" parent="UI/Player"]
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="HealthBar" type="ProgressBar" parent="UI/Player/Bars"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-
-[node name="RageBar" type="ProgressBar" parent="UI/Player/Bars"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-
-[node name="Actions" type="VBoxContainer" parent="UI/Player"]
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="Attack" type="Button" parent="UI/Player/Actions"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-text = "Attack"
-
-[node name="Special" type="Button" parent="UI/Player/Actions"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-text = "Special"
-
-[node name="DebugJump" type="Button" parent="UI/Player/Actions"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-text = "Jump"
-
-[node name="DebugDodge" type="Button" parent="UI/Player/Actions"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-text = "Dodge"
-
-[node name="Indicators" type="VBoxContainer" parent="UI/Player"]
-layout_mode = 2
-
-[node name="TurnIndicator" type="TextureRect" parent="UI/Player/Indicators"]
-visible = false
-layout_mode = 2
-texture = ExtResource("6_x4gkv")
-
-[node name="RageIndicator" type="TextureRect" parent="UI/Player/Indicators"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_7b87t")
-
-[node name="Enemy" type="HBoxContainer" parent="UI"]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -329.0
-offset_top = 36.0
-offset_right = -25.0
-offset_bottom = 102.0
-grow_horizontal = 0
-grow_vertical = 2
-metadata/_edit_group_ = true
-
-[node name="Indicators" type="VBoxContainer" parent="UI/Enemy"]
-layout_mode = 2
-
-[node name="TurnIndicator" type="TextureRect" parent="UI/Enemy/Indicators"]
-visible = false
-layout_mode = 2
-texture = ExtResource("6_x4gkv")
-
-[node name="RageIndicator" type="TextureRect" parent="UI/Enemy/Indicators"]
-visible = false
-layout_mode = 2
-texture = ExtResource("7_7b87t")
-
-[node name="DebugActions" type="VBoxContainer" parent="UI/Enemy"]
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="Attack" type="Button" parent="UI/Enemy/DebugActions"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-text = "Attack"
-
-[node name="Special" type="Button" parent="UI/Enemy/DebugActions"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-text = "Special"
-
-[node name="Bars" type="VBoxContainer" parent="UI/Enemy"]
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="HealthBar" type="ProgressBar" parent="UI/Enemy/Bars"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-
-[node name="RageBar" type="ProgressBar" parent="UI/Enemy/Bars"]
-custom_minimum_size = Vector2(150, 30)
-layout_mode = 2
-
-[connection signal="pressed" from="UI/Player/Actions/Attack" to="." method="_on_player_attack_pressed"]
-[connection signal="pressed" from="UI/Player/Actions/Special" to="." method="_on_player_special_pressed"]
-[connection signal="pressed" from="UI/Enemy/DebugActions/Attack" to="." method="_on_enemy_attack_pressed"]
-[connection signal="pressed" from="UI/Enemy/DebugActions/Special" to="." method="_on_enemy_special_pressed"]
+[connection signal="enemy_attack_input" from="UI" to="." method="_on_enemy_attack_pressed"]
+[connection signal="enemy_special_input" from="UI" to="." method="_on_enemy_special_pressed"]
+[connection signal="player_attack_input" from="UI" to="." method="_on_player_attack_pressed"]
+[connection signal="player_special_input" from="UI" to="." method="_on_player_attack_pressed"]
