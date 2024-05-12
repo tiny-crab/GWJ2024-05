@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dokqrpxf6tpte"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_s1v4y"]
+[ext_resource type="Texture2D" uid="uid://c2iq5kosjgokg" path="res://assets/enemy_raw_sheet.png" id="2_vg652"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_s1v4y")
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_vg652")
+region_enabled = true
+region_rect = Rect2(73, 202, 73, 36)

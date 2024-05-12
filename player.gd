@@ -1,4 +1,4 @@
-extends Node2D
+class_name Player extends Node2D
 
 @export var maxHealth: int = 100
 var currHealth: int
@@ -25,3 +25,6 @@ func take_damage(damage: int):
     currRage = clamp(currRage + 5, 0, maxRage)
     if currRage == maxRage:
         rageActive = true
+
+func _on_hitbox_area_entered(area):
+    take_damage(5)
