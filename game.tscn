@@ -21,4 +21,4 @@ position = Vector2(965, 278)
 [connection signal="player_attack_input" from="UI" to="." method="_on_player_attack_pressed"]
 [connection signal="player_dodge_input" from="UI" to="." method="_on_player_dodge_pressed"]
 [connection signal="player_jump_input" from="UI" to="." method="_on_player_jump_pressed"]
-[connection signal="player_special_input" from="UI" to="." method="_on_player_attack_pressed"]
+[connection signal="player_special_input" from="UI" to="." method="_on_player_special_pressed"]
