@@ -9,6 +9,12 @@ func _ready():
     state.isPlayerTurn = true
     $UI.start()
 
+func _process(delta):
+    if Input.is_action_pressed("player_dodge"):
+        $Player.dodge()
+    if Input.is_action_pressed("player_jump"):
+        $Player.jump()
+
 func _on_player_attack_pressed():
     if state.isPlayerTurn:
         $Player.attack()
@@ -36,3 +42,9 @@ func _on_enemy_special_pressed():
     if not state.isPlayerTurn and $Enemy.rageActive:
         $Enemy.special()
         end_enemy_turn()
+
+func _on_player_jump_pressed():
+    $Player.jump()
+
+func _on_player_dodge_pressed():
+    $Player.dodge()
