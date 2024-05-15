@@ -1,0 +1,4 @@
+extends AnimationPlayer
+
+signal attack_single_complete
+signal disappear_complete

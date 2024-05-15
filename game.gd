@@ -19,13 +19,17 @@ func _on_player_attack_pressed():
     if state.isPlayerTurn:
         $Player.attack()
         $Enemy.take_damage(5)
-        end_player_turn()
 
 func _on_player_special_pressed():
     if state.isPlayerTurn and $Player.rageActive:
         $Player.special()
         $Enemy.take_damage(10)
-        end_player_turn()
+
+func _on_player_turn_complete():
+    end_player_turn()
+
+func _on_enemy_turn_complete():
+    end_enemy_turn()
 
 func end_player_turn():
     state.isPlayerTurn = false
@@ -35,13 +39,11 @@ func end_enemy_turn():
 
 func _on_enemy_attack_pressed():
     if not state.isPlayerTurn:
-        $Enemy.attack()
-        end_enemy_turn()
+        $Enemy.attack($EnemyMeleePosition.global_position)
 
 func _on_enemy_special_pressed():
     if not state.isPlayerTurn and $Enemy.rageActive:
         $Enemy.special()
-        end_enemy_turn()
 
 func _on_player_jump_pressed():
     $Player.jump()

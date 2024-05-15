@@ -21,6 +21,8 @@ var isDodging: bool = false
 
 @onready var sprite = $Sprite
 
+signal turn_complete
+
 func _ready():
     currHealth = maxHealth
     currRage = 0
@@ -40,11 +42,13 @@ func _process(delta):
 
 func attack():
     print("Player attacked!")
+    emit_signal("turn_complete")
 
 func special():
     print("Player used special!")
     currRage = 0
     rageActive = false
+    emit_signal("turn_complete")
 
 func jump():
     if not isJumping and not isDodging:
