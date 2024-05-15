@@ -12,7 +12,7 @@ script = ExtResource("1_tkvc6")
 position = Vector2(194, 314)
 
 [node name="Enemy" parent="." instance=ExtResource("3_d8jnq")]
-position = Vector2(965, 278)
+position = Vector2(963, 247)
 
 [node name="UI" parent="." instance=ExtResource("4_38e1t")]
 
