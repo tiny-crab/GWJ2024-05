@@ -99,7 +99,6 @@ _data = {
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_0yvix")
-metadata/_edit_group_ = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -109,6 +108,7 @@ frame = 37
 region_rect = Rect2(14, 7, 19, 29)
 
 [node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 14)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_872f3")

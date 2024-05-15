@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://8hyrbraj0ibc"]
+[gd_scene load_steps=16 format=3 uid="uid://8hyrbraj0ibc"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_s1v4y"]
 [ext_resource type="Texture2D" uid="uid://c2iq5kosjgokg" path="res://assets/enemy_raw_sheet.png" id="2_vg652"]
+[ext_resource type="Script" path="res://EnemyAnimation.gd" id="3_lgsi0"]
 
 [sub_resource type="Animation" id="Animation_ctpr2"]
 resource_name = "idle"
@@ -33,6 +34,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HighSlashHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LowSlashHitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_mjv8m"]
@@ -100,6 +125,44 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5), Vector2i(8, 5), Vector2i(9, 5), Vector2i(10, 5), Vector2i(11, 5), Vector2i(12, 5), Vector2i(13, 5), Vector2i(14, 5), Vector2i(15, 5)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"attack_single_complete"],
+"method": &"emit_signal"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HighSlashHitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("LowSlashHitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_yur2w"]
 resource_name = "disappear"
@@ -115,6 +178,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 8), Vector2i(1, 8), Vector2i(2, 8), Vector2i(3, 8), Vector2i(4, 8), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"disappear_complete"],
+"method": &"emit_signal"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_nm2aa"]
@@ -179,6 +256,9 @@ _data = {
 "walk": SubResource("Animation_7cmb5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_opt3t"]
+size = Vector2(263, 55)
+
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_s1v4y")
 
@@ -196,3 +276,23 @@ libraries = {
 "": SubResource("AnimationLibrary_jt767")
 }
 autoplay = "idle"
+script = ExtResource("3_lgsi0")
+
+[node name="HighSlashHitbox" type="Area2D" parent="."]
+position = Vector2(-10, 23)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HighSlashHitbox"]
+shape = SubResource("RectangleShape2D_opt3t")
+disabled = true
+
+[node name="LowSlashHitbox" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowSlashHitbox"]
+position = Vector2(-9.5, 60.5)
+shape = SubResource("RectangleShape2D_opt3t")
+disabled = true
+
+[connection signal="attack_single_complete" from="AnimationPlayer" to="." method="attack_single_complete"]
+[connection signal="disappear_complete" from="AnimationPlayer" to="." method="_on_disappear_complete"]

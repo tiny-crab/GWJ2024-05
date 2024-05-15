@@ -11,11 +11,16 @@ script = ExtResource("1_tkvc6")
 [node name="Player" parent="." instance=ExtResource("2_kustv")]
 position = Vector2(194, 314)
 
+[node name="EnemyMeleePosition" type="Node2D" parent="."]
+position = Vector2(344, 272)
+
 [node name="Enemy" parent="." instance=ExtResource("3_d8jnq")]
 position = Vector2(963, 247)
 
 [node name="UI" parent="." instance=ExtResource("4_38e1t")]
 
+[connection signal="turn_complete" from="Player" to="." method="_on_player_turn_complete"]
+[connection signal="turn_complete" from="Enemy" to="." method="_on_enemy_turn_complete"]
 [connection signal="enemy_attack_input" from="UI" to="." method="_on_enemy_attack_pressed"]
 [connection signal="enemy_special_input" from="UI" to="." method="_on_enemy_special_pressed"]
 [connection signal="player_attack_input" from="UI" to="." method="_on_player_attack_pressed"]
