@@ -11,6 +11,9 @@ script = ExtResource("1_tkvc6")
 [node name="Player" parent="." instance=ExtResource("2_kustv")]
 position = Vector2(194, 314)
 
+[node name="MeleePosition" parent="Player" index="4"]
+position = Vector2(663, 3)
+
 [node name="EnemyMeleePosition" type="Node2D" parent="."]
 position = Vector2(344, 272)
 
@@ -27,3 +30,5 @@ position = Vector2(963, 247)
 [connection signal="player_dodge_input" from="UI" to="." method="_on_player_dodge_pressed"]
 [connection signal="player_jump_input" from="UI" to="." method="_on_player_jump_pressed"]
 [connection signal="player_special_input" from="UI" to="." method="_on_player_special_pressed"]
+
+[editable path="Player"]

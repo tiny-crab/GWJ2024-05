@@ -1,0 +1,4 @@
+extends AnimationPlayer
+
+signal attack_one_windup
+signal attack_one_slash
