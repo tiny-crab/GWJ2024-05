@@ -42,6 +42,30 @@ func _process(delta):
 
 func attack():
     print("Player attacked!")
+    start_attack_animation()
+
+func start_attack_animation():
+    $AnimationPlayer.current_animation = "attack_one_windup"
+
+func _on_animation_player_attack_one_windup():
+    var tween = get_tree().create_tween()
+    tween.tween_property(self, "position", $MeleePosition.global_position, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+    tween.connect("finished", self.attack_one_slash)
+
+func attack_one_slash():
+    $AnimationPlayer.current_animation = "attack_one_slash"
+
+func _on_animation_player_attack_one_slash():
+    return_from_attack()
+
+func return_from_attack():
+    print("returning")
+    var tween = get_tree().create_tween()
+    tween.parallel().tween_property(self, "position", initPosition, 0.2)
+    tween.connect("finished", self.reset_position)
+
+func reset_position():
+    $AnimationPlayer.current_animation = "idle"
     emit_signal("turn_complete")
 
 func special():
