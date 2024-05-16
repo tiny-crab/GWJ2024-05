@@ -2,3 +2,8 @@ extends AnimationPlayer
 
 signal attack_one_windup
 signal attack_one_slash
+
+signal attack_two_windup
+signal attack_two_slash
+signal attack_two_slash_two
+signal attack_two_slash_three

@@ -72,7 +72,27 @@ func special():
     print("Player used special!")
     currRage = 0
     rageActive = false
-    emit_signal("turn_complete")
+    start_special_animation()
+
+func start_special_animation():
+    $AnimationPlayer.current_animation = "attack_two_windup"
+
+func _on_animation_player_attack_two_windup():
+    var tween = get_tree().create_tween()
+    tween.tween_property(self, "position", $MeleePosition.global_position, 0.25).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+    tween.connect("finished", self.attack_two_slash)
+
+func attack_two_slash():
+    $AnimationPlayer.current_animation = "attack_two_slash"
+
+func _on_animation_player_attack_two_slash():
+    $AnimationPlayer.current_animation = "attack_two_slash_two"
+
+func _on_animation_player_attack_two_slash_two():
+    $AnimationPlayer.current_animation = "attack_two_slash_three"
+
+func _on_animation_player_attack_two_slash_three():
+    return_from_attack()
 
 func jump():
     if not isJumping and not isDodging:
