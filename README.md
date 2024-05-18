@@ -11,3 +11,6 @@
 ## 2024-05-14 (6 hours in)
 ![image](https://github.com/tiny-crab/GWJ2024-05/blob/main/demos/demo_4.gif?raw=true)
 ![image](https://github.com/tiny-crab/GWJ2024-05/blob/main/demos/demo_5.gif?raw=true)
+
+## 2024-05-15 (8 hours in)
+![image](https://github.com/tiny-crab/GWJ2024-05/blob/main/demos/demo_6.gif?raw=true)
