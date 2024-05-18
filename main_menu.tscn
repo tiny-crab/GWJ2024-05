@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://bf1bnyatox02v"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_37cfn"]
+[ext_resource type="Texture2D" uid="uid://bqyx3gryrdkmb" path="res://assets/play_button.png" id="1_uu4ua"]
+[ext_resource type="Texture2D" uid="uid://gb4pbpuyj277" path="res://assets/background.png" id="1_vqfx0"]
+[ext_resource type="Texture2D" uid="uid://df6qlg3wwht2" path="res://assets/exit_button.png" id="2_p5v6e"]
+[ext_resource type="Texture2D" uid="uid://d0hgmm8muxhfa" path="res://assets/title.png" id="3_83lm0"]
+[ext_resource type="Texture2D" uid="uid://dhruwpmbsdk4v" path="res://assets/drrr.png" id="6_vxeh2"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_37cfn")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="UI"]
+modulate = Color(0.458405, 0.458405, 0.458405, 1)
+offset_right = 1153.0
+offset_bottom = 646.0
+texture = ExtResource("1_vqfx0")
+expand_mode = 1
+
+[node name="Title" type="TextureRect" parent="UI"]
+offset_right = 1151.0
+offset_bottom = 646.0
+texture = ExtResource("3_83lm0")
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="UI"]
+offset_top = 312.0
+offset_right = 1151.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/CenterContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="UI/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(238, 166)
+layout_mode = 2
+texture_normal = ExtResource("1_uu4ua")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExitButton" type="TextureButton" parent="UI/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(238, 166)
+layout_mode = 2
+texture_normal = ExtResource("2_p5v6e")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="DRRR" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="Panel" parent="DRRR"]
+modulate = Color(0, 0, 0, 1)
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="DRRR1" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(185, 53)
+offset_left = 130.0
+offset_top = 80.0
+offset_right = 315.0
+offset_bottom = 133.0
+texture = ExtResource("6_vxeh2")
+expand_mode = 1
+
+[node name="DRRR2" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 702.0
+offset_top = 232.0
+offset_right = 1072.0
+offset_bottom = 339.0
+texture = ExtResource("6_vxeh2")
+expand_mode = 1
+
+[node name="DRRR3" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 72.0
+offset_top = 469.0
+offset_right = 442.0
+offset_bottom = 576.0
+texture = ExtResource("6_vxeh2")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="mouse_entered" from="UI/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_entered"]
+[connection signal="mouse_exited" from="UI/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_mouse_exited"]
+[connection signal="pressed" from="UI/CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
