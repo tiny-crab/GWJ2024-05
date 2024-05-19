@@ -31,6 +31,14 @@ func _on_enemy_turn_complete():
 
 func end_player_turn():
     state.isPlayerTurn = false
+    var tween = get_tree().create_tween()
+    tween.tween_callback(choose_enemy_action).set_delay(1)
+
+func choose_enemy_action():
+    if $Enemy.currRage == $Enemy.maxRage:
+        $Enemy.special()
+    else:
+        $Enemy.attack($EnemyMeleePosition.global_position)
 
 func end_enemy_turn():
     state.isPlayerTurn = true

@@ -1,16 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bakruh0qvq10c"]
+[gd_scene load_steps=12 format=3 uid="uid://bakruh0qvq10c"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_xsy64"]
+[ext_resource type="Theme" uid="uid://3smw3tnxke7n" path="res://healthbar.tres" id="2_dttrt"]
 [ext_resource type="Texture2D" uid="uid://ddavcxrop87me" path="res://assets/turn_indicator.png" id="2_mpdl6"]
 [ext_resource type="Texture2D" uid="uid://drmhb4e64empf" path="res://assets/attack_button.png" id="2_pm3b5"]
 [ext_resource type="Texture2D" uid="uid://bps22f8h2af31" path="res://assets/special_button.png" id="3_5ooqy"]
 [ext_resource type="Texture2D" uid="uid://c88t6h65amc8y" path="res://assets/rage_indicator.png" id="3_khd12"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxxr1"]
-bg_color = Color(0.588607, 0.124408, 0.202409, 1)
-
-[sub_resource type="Theme" id="Theme_7ev43"]
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_pxxr1")
+[ext_resource type="Texture2D" uid="uid://dvgisnhchvbrv" path="res://assets/health_bar.png" id="7_mqmt0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1dcux"]
 bg_color = Color(0.137813, 0.318433, 0.626066, 1)
@@ -18,6 +14,13 @@ bg_color = Color(0.137813, 0.318433, 0.626066, 1)
 [sub_resource type="Theme" id="Theme_bhrqt"]
 ProgressBar/styles/background = null
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_1dcux")
+
+[sub_resource type="Gradient" id="Gradient_s1gvj"]
+offsets = PackedFloat32Array(0.986971)
+colors = PackedColorArray(0.639216, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cyaf"]
+gradient = SubResource("Gradient_s1gvj")
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_xsy64")
@@ -40,7 +43,7 @@ metadata/_edit_group_ = true
 [node name="HealthBar" type="ProgressBar" parent="Player/Bars"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
-theme = SubResource("Theme_7ev43")
+theme = ExtResource("2_dttrt")
 
 [node name="RageBar" type="ProgressBar" parent="Player/Bars"]
 custom_minimum_size = Vector2(150, 30)
@@ -119,6 +122,7 @@ layout_mode = 2
 texture = ExtResource("3_khd12")
 
 [node name="DebugActions" type="VBoxContainer" parent="Enemy"]
+visible = false
 layout_mode = 2
 metadata/_edit_group_ = true
 
@@ -139,10 +143,24 @@ metadata/_edit_group_ = true
 [node name="HealthBar" type="ProgressBar" parent="Enemy/Bars"]
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+theme = ExtResource("2_dttrt")
+fill_mode = 1
+show_percentage = false
 
 [node name="RageBar" type="ProgressBar" parent="Enemy/Bars"]
+visible = false
 custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
+offset_left = 1110.0
+offset_top = 305.0
+offset_right = 3498.0
+offset_bottom = 1973.0
+scale = Vector2(-0.2, 0.2)
+texture_over = ExtResource("7_mqmt0")
+texture_progress = SubResource("GradientTexture1D_5cyaf")
 
 [connection signal="pressed" from="Player/Actions/Attack" to="." method="_on_player_attack_pressed"]
 [connection signal="pressed" from="Player/Actions/Special" to="." method="_on_player_special_pressed"]
