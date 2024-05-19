@@ -24,6 +24,32 @@ var isDodging: bool = false
 signal turn_complete
 signal hit_target
 
+@onready var playerDamagedSounds = [
+    preload("res://assets/sounds/playerhit2/hit1.ogg"),
+    preload("res://assets/sounds/playerhit2/hit2.ogg"),
+    preload("res://assets/sounds/playerhit2/hit3.ogg"),
+    preload("res://assets/sounds/playerhit2/hit4.ogg"),
+    preload("res://assets/sounds/playerhit2/hit5.ogg"),
+]
+
+@onready var playerDodgeSounds = [
+    preload("res://assets/sounds/dodge/woosh1.ogg"),
+    preload("res://assets/sounds/dodge/woosh2.ogg"),
+    preload("res://assets/sounds/dodge/woosh3.ogg"),
+    preload("res://assets/sounds/dodge/woosh4.ogg"),
+    preload("res://assets/sounds/dodge/woosh5.ogg"),
+    preload("res://assets/sounds/dodge/woosh6.ogg"),
+    preload("res://assets/sounds/dodge/woosh7.ogg"),
+    preload("res://assets/sounds/dodge/woosh8.ogg"),
+]
+
+@onready var playerJumpSounds = [
+    preload("res://assets/sounds/jump/jump1.ogg"),
+    preload("res://assets/sounds/jump/jump2.ogg"),
+    preload("res://assets/sounds/jump/jump3.ogg"),
+    preload("res://assets/sounds/jump/jump4.ogg"),
+]
+
 func _ready():
     currHealth = maxHealth
     currRage = 0
@@ -101,12 +127,16 @@ func _on_animation_player_attack_two_slash_three():
 
 func jump():
     if not isJumping and not isDodging:
+        $AudioStreamPlayer2D.stream = playerJumpSounds.pick_random()
+        $AudioStreamPlayer2D.play()
         isJumping = true
         $AnimationPlayer.current_animation = "jump_up"
         currVelocity = jumpVelocity
 
 func dodge():
     if not isDodging and not isJumping:
+        $AudioStreamPlayer2D.stream = playerDodgeSounds.pick_random()
+        $AudioStreamPlayer2D.play()
         print("Player dodged")
         dodgeTimer.start()
         isDodging = true
@@ -121,6 +151,8 @@ func take_damage(damage: int):
     currRage = clamp(currRage + 2, 0, maxRage)
     if currRage == maxRage:
         rageActive = true
+    $AudioStreamPlayer2D.stream = playerDamagedSounds.pick_random()
+    $AudioStreamPlayer2D.play()
 
 func _on_hitbox_area_entered(area):
     take_damage(5)

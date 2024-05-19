@@ -325,6 +325,8 @@ script = ExtResource("3_3f3w6")
 
 [node name="MeleePosition" type="Node2D" parent="."]
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
 [connection signal="attack_one_slash" from="AnimationPlayer" to="." method="_on_animation_player_attack_one_slash"]

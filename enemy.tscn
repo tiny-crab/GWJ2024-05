@@ -294,5 +294,7 @@ position = Vector2(-9.5, 60.5)
 shape = SubResource("RectangleShape2D_opt3t")
 disabled = true
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="attack_single_complete" from="AnimationPlayer" to="." method="attack_single_complete"]
 [connection signal="disappear_complete" from="AnimationPlayer" to="." method="_on_disappear_complete"]

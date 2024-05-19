@@ -16,6 +16,14 @@ var rageActive: bool
 var locationToDisappearTo: Vector2
 var nextAnimationAfterDisappear: String
 
+@onready var disappearSounds = [
+    preload("res://assets/sounds/vanish/impactMining_000.ogg"),
+    preload("res://assets/sounds/vanish/impactMining_001.ogg"),
+    preload("res://assets/sounds/vanish/impactMining_002.ogg"),
+    preload("res://assets/sounds/vanish/impactMining_003.ogg"),
+    preload("res://assets/sounds/vanish/impactMining_004.ogg"),
+]
+
 func _ready():
     currHealth = maxHealth
     currRage = 0
@@ -25,6 +33,8 @@ func disappear_to(global_position: Vector2, next_animation: String):
     $AnimationPlayer.current_animation = "disappear"
     nextAnimationAfterDisappear = next_animation
     locationToDisappearTo = global_position
+    $AudioStreamPlayer2D.stream = disappearSounds.pick_random()
+    $AudioStreamPlayer2D.play()
 
 func _on_disappear_complete():
     position = locationToDisappearTo

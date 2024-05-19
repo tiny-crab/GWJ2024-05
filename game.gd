@@ -3,6 +3,24 @@ extends Node2D
 @onready var state: GameState = GameState.new()
 var isPlayerAttacking: bool = false
 
+@onready var playerHitSounds = [
+    preload("res://assets/sounds/playerhit1/sword4.ogg"),
+    preload("res://assets/sounds/playerhit1/sword5.ogg"),
+    preload("res://assets/sounds/playerhit1/sword6.ogg"),
+    preload("res://assets/sounds/playerhit1/sword7.ogg"),
+    preload("res://assets/sounds/playerhit1/sword8.ogg"),
+    preload("res://assets/sounds/playerhit1/sword9.ogg"),
+    preload("res://assets/sounds/playerhit1/sword10.ogg"),
+    preload("res://assets/sounds/playerhit1/sword11.ogg"),
+]
+
+@onready var uiSounds = [
+    preload("res://assets/sounds/uiclicks/mouseclick1.ogg"),
+    preload("res://assets/sounds/uiclicks/switch17.ogg"),
+    preload("res://assets/sounds/uiclicks/switch18.ogg"),
+    preload("res://assets/sounds/uiclicks/switch19.ogg"),
+]
+
 func _ready():
     $UI.player = $Player
     $UI.enemy = $Enemy
@@ -21,11 +39,15 @@ func _process(delta):
         $UI/Player/Actions/Special.visible = false
 
 func _on_player_attack_pressed():
+    $AudioStreamPlayer2D.stream = uiSounds.pick_random()
+    $AudioStreamPlayer2D.play()
     if state.isPlayerTurn and not isPlayerAttacking:
         $Player.attack()
         isPlayerAttacking = true
 
 func _on_player_special_pressed():
+    $AudioStreamPlayer2D.stream = uiSounds.pick_random()
+    $AudioStreamPlayer2D.play()
     if state.isPlayerTurn and $Player.rageActive:
         $Player.special()
 
@@ -67,4 +89,6 @@ func _on_player_dodge_pressed():
     $Player.dodge()
 
 func _on_player_hit_target():
+    $AudioStreamPlayer2D.stream = playerHitSounds.pick_random()
+    $AudioStreamPlayer2D.play()
     $Enemy.take_damage(5)
