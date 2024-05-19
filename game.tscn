@@ -40,6 +40,40 @@ offset_bottom = 257.0
 [node name="HealthBar" parent="UI/Enemy/Bars" index="0"]
 show_percentage = true
 
+[node name="Hint" parent="UI" index="2"]
+visible = false
+offset_left = -577.0
+offset_top = -325.0
+offset_right = 576.0
+
+[node name="w_key" parent="UI/Hint" index="0"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 118.0
+offset_right = 192.0
+offset_bottom = 143.0
+
+[node name="s_key" parent="UI/Hint" index="1"]
+layout_mode = 0
+offset_left = 142.0
+offset_top = 146.0
+offset_right = 192.0
+offset_bottom = 171.0
+
+[node name="RichTextLabel" parent="UI/Hint" index="2"]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 118.0
+offset_right = 283.0
+offset_bottom = 168.0
+
+[node name="RichTextLabel2" parent="UI/Hint" index="3"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 147.0
+offset_right = 284.0
+offset_bottom = 197.0
+
 [connection signal="turn_complete" from="Enemy" to="." method="_on_enemy_turn_complete"]
 [connection signal="hit_target" from="Player" to="." method="_on_player_hit_target"]
 [connection signal="turn_complete" from="Player" to="." method="_on_player_turn_complete"]
