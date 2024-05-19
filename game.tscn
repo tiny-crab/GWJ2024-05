@@ -31,6 +31,12 @@ position = Vector2(963, 247)
 
 [node name="UI" parent="." instance=ExtResource("4_38e1t")]
 
+[node name="Player" parent="UI" index="0"]
+offset_left = 48.0
+offset_top = 53.0
+offset_right = 356.0
+offset_bottom = 257.0
+
 [connection signal="hit_target" from="Player" to="." method="_on_player_hit_target"]
 [connection signal="turn_complete" from="Player" to="." method="_on_player_turn_complete"]
 [connection signal="turn_complete" from="Enemy" to="." method="_on_enemy_turn_complete"]
@@ -42,3 +48,4 @@ position = Vector2(963, 247)
 [connection signal="player_special_input" from="UI" to="." method="_on_player_special_pressed"]
 
 [editable path="Player"]
+[editable path="UI"]
