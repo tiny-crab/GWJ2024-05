@@ -18,12 +18,10 @@ func _process(delta):
 func _on_player_attack_pressed():
     if state.isPlayerTurn:
         $Player.attack()
-        $Enemy.take_damage(5)
 
 func _on_player_special_pressed():
     if state.isPlayerTurn and $Player.rageActive:
         $Player.special()
-        $Enemy.take_damage(10)
 
 func _on_player_turn_complete():
     end_player_turn()
@@ -50,3 +48,6 @@ func _on_player_jump_pressed():
 
 func _on_player_dodge_pressed():
     $Player.dodge()
+
+func _on_player_hit_target():
+    $Enemy.take_damage(5)

@@ -64,6 +64,9 @@ func special():
     emit_signal("turn_complete")
 
 func take_damage(damage: int):
+    var tween = get_tree().create_tween()
+    tween.tween_property($Sprite2D, "modulate", Color(10,10,10,10), 0.1)
+    tween.tween_property($Sprite2D, "modulate", Color(1, 1, 1, 1), 0.1)
     currHealth = clamp(currHealth - damage, 0, maxHealth)
     currRage = clamp(currRage + 5, 0, maxRage)
     if currRage == maxRage:

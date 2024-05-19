@@ -31,6 +31,7 @@ position = Vector2(963, 247)
 
 [node name="UI" parent="." instance=ExtResource("4_38e1t")]
 
+[connection signal="hit_target" from="Player" to="." method="_on_player_hit_target"]
 [connection signal="turn_complete" from="Player" to="." method="_on_player_turn_complete"]
 [connection signal="turn_complete" from="Enemy" to="." method="_on_enemy_turn_complete"]
 [connection signal="enemy_attack_input" from="UI" to="." method="_on_enemy_attack_pressed"]

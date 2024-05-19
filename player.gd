@@ -22,6 +22,7 @@ var isDodging: bool = false
 @onready var sprite = $Sprite
 
 signal turn_complete
+signal hit_target
 
 func _ready():
     currHealth = maxHealth
@@ -54,6 +55,7 @@ func _on_animation_player_attack_one_windup():
 
 func attack_one_slash():
     $AnimationPlayer.current_animation = "attack_one_slash"
+    emit_signal("hit_target")
 
 func _on_animation_player_attack_one_slash():
     return_from_attack()
@@ -84,12 +86,15 @@ func _on_animation_player_attack_two_windup():
 
 func attack_two_slash():
     $AnimationPlayer.current_animation = "attack_two_slash"
+    emit_signal("hit_target")
 
 func _on_animation_player_attack_two_slash():
     $AnimationPlayer.current_animation = "attack_two_slash_two"
+    emit_signal("hit_target")
 
 func _on_animation_player_attack_two_slash_two():
     $AnimationPlayer.current_animation = "attack_two_slash_three"
+    emit_signal("hit_target")
 
 func _on_animation_player_attack_two_slash_three():
     return_from_attack()
@@ -109,6 +114,9 @@ func dodge():
         hitbox.collision_mask = 0
 
 func take_damage(damage: int):
+    var tween = get_tree().create_tween()
+    tween.tween_property($Sprite, "modulate", Color(10,10,10,10), 0.1)
+    tween.tween_property($Sprite, "modulate", Color(1, 1, 1, 1), 0.1)
     currHealth = clamp(currHealth - damage, 0, maxHealth)
     currRage = clamp(currRage + 5, 0, maxRage)
     if currRage == maxRage:
