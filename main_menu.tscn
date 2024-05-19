@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bf1bnyatox02v"]
+[gd_scene load_steps=18 format=3 uid="uid://bf1bnyatox02v"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_37cfn"]
 [ext_resource type="Texture2D" uid="uid://bqyx3gryrdkmb" path="res://assets/play_button.png" id="1_uu4ua"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://df6qlg3wwht2" path="res://assets/exit_button.png" id="2_p5v6e"]
 [ext_resource type="Texture2D" uid="uid://d0hgmm8muxhfa" path="res://assets/title.png" id="3_83lm0"]
 [ext_resource type="Texture2D" uid="uid://dhruwpmbsdk4v" path="res://assets/drrr.png" id="6_vxeh2"]
+[ext_resource type="Texture2D" uid="uid://db14hpv055e82" path="res://assets/fallen.png" id="7_h3svl"]
 [ext_resource type="Texture2D" uid="uid://b2hkar4bamabx" path="res://assets/comic/panel 1/panel1bg.png" id="7_kjdxr"]
 [ext_resource type="Texture2D" uid="uid://d13qw72epfoo1" path="res://assets/comic/panel 2/panel2bg.png" id="8_1p455"]
 [ext_resource type="Texture2D" uid="uid://cde6a3bse58ti" path="res://assets/comic/panel 1/panel1text.png" id="8_mvgxo"]
@@ -94,6 +95,17 @@ offset_right = 442.0
 offset_bottom = 576.0
 texture = ExtResource("6_vxeh2")
 expand_mode = 1
+
+[node name="DRRR4" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 436.0
+offset_top = 443.0
+offset_right = 1155.0
+offset_bottom = 743.0
+texture = ExtResource("7_h3svl")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Comic" type="CanvasLayer" parent="."]
 visible = false

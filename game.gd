@@ -4,14 +4,11 @@ extends Node2D
 var isPlayerAttacking: bool = false
 
 @onready var playerHitSounds = [
-    preload("res://assets/sounds/playerhit1/sword4.ogg"),
-    preload("res://assets/sounds/playerhit1/sword5.ogg"),
-    preload("res://assets/sounds/playerhit1/sword6.ogg"),
-    preload("res://assets/sounds/playerhit1/sword7.ogg"),
-    preload("res://assets/sounds/playerhit1/sword8.ogg"),
-    preload("res://assets/sounds/playerhit1/sword9.ogg"),
-    preload("res://assets/sounds/playerhit1/sword10.ogg"),
-    preload("res://assets/sounds/playerhit1/sword11.ogg"),
+    preload("res://assets/sounds/playerhit2/hit1.ogg"),
+    preload("res://assets/sounds/playerhit2/hit2.ogg"),
+    preload("res://assets/sounds/playerhit2/hit3.ogg"),
+    preload("res://assets/sounds/playerhit2/hit4.ogg"),
+    preload("res://assets/sounds/playerhit2/hit5.ogg"),
 ]
 
 @onready var uiSounds = [
@@ -29,14 +26,18 @@ func _ready():
     $UI.start()
 
 func _process(delta):
-    if Input.is_action_pressed("player_dodge"):
+    if Input.is_action_pressed("player_dodge") and not state.isPlayerTurn:
         $Player.dodge()
-    if Input.is_action_pressed("player_jump"):
+    if Input.is_action_pressed("player_jump") and not state.isPlayerTurn:
         $Player.jump()
     if $Player.currRage == $Player.maxRage:
         $UI/Player/Actions/Special.visible = true
     else:
         $UI/Player/Actions/Special.visible = false
+    if $Player.currHealth == 0:
+        game_over()
+    if $Enemy.currHealth == 0:
+        you_win()
 
 func _on_player_attack_pressed():
     $AudioStreamPlayer2D.stream = uiSounds.pick_random()
@@ -92,3 +93,21 @@ func _on_player_hit_target():
     $AudioStreamPlayer2D.stream = playerHitSounds.pick_random()
     $AudioStreamPlayer2D.play()
     $Enemy.take_damage(5)
+
+func game_over():
+    $TextureRect.visible = false
+    $UI.visible = false
+    $Player.visible = false
+    $Enemy.visible = false
+    $DRRR.visible = true
+    var tween = get_tree().create_tween()
+    tween.tween_property($DRRR/DRRR1, "modulate", Color("ffffff"), 1)
+    tween.tween_property($DRRR/DRRR2, "modulate", Color("ffffff"), 1)
+    tween.tween_property($DRRR/DRRR3, "modulate", Color("ffffff"), 1)
+    tween.tween_property($DRRR/DRRR4, "modulate", Color("ffffff"), 1)
+    tween.tween_property($DRRR/DRRR5, "modulate", Color("ffffff"), 60)
+
+func you_win():
+    var menu = preload("res://main_menu.tscn").instantiate()
+    get_tree().root.add_child(menu)
+    get_tree().root.remove_child(self)

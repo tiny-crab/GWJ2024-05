@@ -31,7 +31,7 @@ func _on_play_button_pressed():
     tween.tween_property($Comic/Panel1/Text, "modulate", Color("ffffff"), 2)
 
     # Transition panel 1 -> 2
-    tween.tween_property($Comic/Panel1/Background, "modulate", Color("ffffff00"), 1).set_delay(5)
+    tween.parallel().tween_property($Comic/Panel1/Background, "modulate", Color("ffffff00"), 1).set_delay(5)
     tween.parallel().tween_property($Comic/Panel1/Text, "modulate", Color("ffffff00"), 1).set_delay(5)
     tween.parallel().tween_property($Comic/Panel2/Background, "modulate", Color("ffffff"), 1).set_delay(5)
 
@@ -80,4 +80,5 @@ func _on_exit_button_pressed():
     tween.tween_property($DRRR/DRRR1, "modulate", Color("ffffff"), 1)
     tween.tween_property($DRRR/DRRR2, "modulate", Color("ffffff"), 1)
     tween.tween_property($DRRR/DRRR3, "modulate", Color("ffffff"), 1)
+    tween.tween_property($DRRR/DRRR4, "modulate", Color("ffffff"), 1)
 

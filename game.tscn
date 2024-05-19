@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxt1pif8eymj"]
+[gd_scene load_steps=9 format=3 uid="uid://dxt1pif8eymj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_tkvc6"]
 [ext_resource type="PackedScene" uid="uid://bwp5cwf3sagjn" path="res://player.tscn" id="2_kustv"]
 [ext_resource type="Texture2D" uid="uid://gb4pbpuyj277" path="res://assets/background.png" id="2_oyqxy"]
 [ext_resource type="PackedScene" uid="uid://8hyrbraj0ibc" path="res://enemy.tscn" id="3_d8jnq"]
 [ext_resource type="PackedScene" uid="uid://bakruh0qvq10c" path="res://ui.tscn" id="4_38e1t"]
+[ext_resource type="Texture2D" uid="uid://dhruwpmbsdk4v" path="res://assets/drrr.png" id="6_v1ic7"]
+[ext_resource type="Texture2D" uid="uid://db14hpv055e82" path="res://assets/fallen.png" id="7_kv1fr"]
+[ext_resource type="Texture2D" uid="uid://dp7r71odlrstq" path="res://assets/eye.png" id="8_xf4e8"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_tkvc6")
@@ -75,6 +78,66 @@ offset_right = 284.0
 offset_bottom = 197.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="DRRR" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Background" type="Panel" parent="DRRR"]
+modulate = Color(0, 0, 0, 1)
+offset_right = 1151.0
+offset_bottom = 647.0
+
+[node name="DRRR1" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(185, 53)
+offset_left = 130.0
+offset_top = 80.0
+offset_right = 315.0
+offset_bottom = 133.0
+texture = ExtResource("6_v1ic7")
+expand_mode = 1
+
+[node name="DRRR2" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 702.0
+offset_top = 232.0
+offset_right = 1072.0
+offset_bottom = 339.0
+texture = ExtResource("6_v1ic7")
+expand_mode = 1
+
+[node name="DRRR3" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 72.0
+offset_top = 469.0
+offset_right = 442.0
+offset_bottom = 576.0
+texture = ExtResource("6_v1ic7")
+expand_mode = 1
+
+[node name="DRRR4" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 436.0
+offset_top = 443.0
+offset_right = 1155.0
+offset_bottom = 743.0
+texture = ExtResource("7_kv1fr")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DRRR5" type="TextureRect" parent="DRRR"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(370, 107)
+offset_left = 367.0
+offset_top = 206.0
+offset_right = 737.0
+offset_bottom = 438.0
+texture = ExtResource("8_xf4e8")
+expand_mode = 1
+stretch_mode = 6
 
 [connection signal="turn_complete" from="Enemy" to="." method="_on_enemy_turn_complete"]
 [connection signal="hit_target" from="Player" to="." method="_on_player_hit_target"]

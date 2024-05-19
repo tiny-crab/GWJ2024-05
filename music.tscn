@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfa3n1r25boqt"]
+
+[ext_resource type="AudioStream" uid="uid://cmbmcjwqisago" path="res://assets/oxbridge_void.wav" id="1_wbh27"]
+[ext_resource type="Script" path="res://music.gd" id="2_yexff"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_wbh27")
+script = ExtResource("2_yexff")
