@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxt1pif8eymj"]
+[gd_scene load_steps=6 format=3 uid="uid://dxt1pif8eymj"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_tkvc6"]
 [ext_resource type="PackedScene" uid="uid://bwp5cwf3sagjn" path="res://player.tscn" id="2_kustv"]
+[ext_resource type="Texture2D" uid="uid://gb4pbpuyj277" path="res://assets/background.png" id="2_oyqxy"]
 [ext_resource type="PackedScene" uid="uid://8hyrbraj0ibc" path="res://enemy.tscn" id="3_d8jnq"]
 [ext_resource type="PackedScene" uid="uid://bakruh0qvq10c" path="res://ui.tscn" id="4_38e1t"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_tkvc6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.54, 0.54, 0.54, 1)
+offset_right = 1153.0
+offset_bottom = 646.0
+texture = ExtResource("2_oyqxy")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Player" parent="." instance=ExtResource("2_kustv")]
 position = Vector2(194, 314)
