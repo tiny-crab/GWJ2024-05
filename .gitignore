@@ -3,3 +3,6 @@
 
 # MAC OS ignores
 .DS_Store
+
+# builds
+builds/
